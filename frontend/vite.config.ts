@@ -12,6 +12,7 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    allowedHosts: true,
     proxy: {
       // Forward /api requests to the FastAPI backend
       // Uses localhost:8000 because Docker maps the backend port to localhost

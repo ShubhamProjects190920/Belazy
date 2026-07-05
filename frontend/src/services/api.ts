@@ -8,9 +8,9 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useAuthStore } from "@/store/authStore";
 
-// Always use the Vite proxy (/api → localhost:8000)
-// This works in both Docker and local dev without any env variable needed
-const API_BASE_URL = "/api/v1";
+// In dev: Vite proxy forwards /api → backend
+// In production (Render): VITE_API_URL env var points to backend URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || "/api/v1";
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
