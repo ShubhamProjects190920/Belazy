@@ -11,7 +11,6 @@ services:
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    plan: free
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -56,13 +55,12 @@ services:
       - key: PASSWORD_RESET_TOKEN_EXPIRE_HOURS
         value: "24"
 
-  # ── React Frontend (Static Site) ─────────────────────────────────────────────
+  # ── React Frontend (Static Site — Always Free) ────────────────────────────────
   - type: web
     name: belazy-frontend
     runtime: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
-    plan: free
     envVars:
       - key: VITE_API_URL
         value: https://belazy-backend.onrender.com/api/v1
